@@ -23,7 +23,7 @@ import os
 from django.core.mail import EmailMessage
 from django.core.mail import send_mail
 from django.test import TestCase
-
+#test
 
 def application(request):
 	if request.method == 'POST':
