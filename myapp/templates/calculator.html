@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block title %}Loan Pricing - Buckingham Financial Group{% endblock %}
+
+{% block js %}
+
+
+
+
+    <script>
+
+        $(document).ready(function() {
+            
+          // http://jqueryvalidation.org/
+            $('#rateEntry').validate({ // initialize the plugin
+                onblur: function (element) {
+                    $(element).valid()},
+
+                    rules: {
+                        loan_amount: {
+                            min: 50000,
+                            max: 3000000,
+                            number: true
+                        },
+                        interest_rate: {
+                            min: 0,
+                            max: 20,
+                            number: true
+                        },
+                        months: {
+                            min: 12,
+                            max: 480,
+                            number: true
+                        }
+                    },
+
+                    messages: {
+                        loan_amount: "Please enter a value between $50,000 and $3M",
+                        interest_rate: "Please enter a value less than 20%",
+                    }
+                });
+
+            $("input").keyup(function(event) {
+                //$("input").css("background-color","pink");
+
+             //if ( $('#id_loan_amount').val().substring(0,1) == "$"    ) {
+
+
+            //         $('#id_loan_amount').val() = $('#id_loan_amount').val().substring(1);
+            //         $("input").css("background-color","pink");
+             //};
+
+                // only execute the ajax call if the fields have been filled out
+                if ($('#id_loan_amount').val() >= 50000 && $('#id_loan_amount').val() <= 3000000  && $('#id_interest_rate').val() > 0 && $('#id_interest_rate').val() <= 20  && $('#id_months').val() >=12 && $('#id_months').val() <=480) {
+
+                    // if ($('#id_interest_rate').val() > 1) {
+                    //     $('#id_interest_rate').val() = $('#id_interest_rate').val()/100;
+                    // }
+
+                    var x = $('#id_interest_rate').val();
+                    if (x >=1 && x <= 20) {
+                        x = x / 100;
+                    }
+
+                  
+                    // url parameter is the index, thus a blank value
+                    // if ajax call succeeds, call the "searchSuccess" function
+                    $.ajax({
+                        type: "POST",
+                        url: "",
+                        data: {
+                            loan_amount : $('#id_loan_amount').val(),
+                            interest_rate : x,
+                            //interest_rate : $('#id_interest_rate').val(),
+                            months : $('#id_months').val()
+                        },
+                        success: calculatorSuccess,
+                        error: failure,
+                        dataType: 'json'
+                    }); // end of ajax function
+                } // end of If statement
+            }); // end of keyup
+        }); // end of document (function)
+    </script> <!-- end of jquery ajax call -->
+{% endblock%}
+
+{% block navigation %}
+<div class = "navbar_blue">
+<div class = "container">
+                
+                <div class = "col4">
+                     {% load staticfiles %}
+                    <a href = "/"><img id = "logo" src="{% static 'images/logo_white.png' %}"  / ></a>
+                </div> <!-- end of col4 -->
+
+                <div classss = "col4"></div> <!-- end of col4 -->
+
+                <div class = "col8">
+                    <div id = "links_white">
+                        <ul>
+                            <li><a href = "/">Home</a></li>
+                            <li><a href = "/calculator/">Calculator</a></li>
+                            <li><a href = "/rates/">Rates</a></li>
+                          <li><a href = "/contact/">Contact</a></li>
+                        </ul>
+                    </div> <!-- end of "links" -->
+                </div> <!-- end of col4 -->
+
+              
+            </div> <!-- end of "container" -->
+        </div> <!-- end of "navbar" -->
+
+        <div id = "transparency">
+        </div>
+
+
+{% endblock %}
+
+{% block content %}
+
+    <div id = "calculator_banner">
+        <div class = "container">
+            <div class = "col100">
+                <img id = "tag" src="{% static 'images/calculator.png' %}">
+                <h1>Calculate Your Mortgage Payment</h1>
+                <p>View your amortization table and loan payment amounts.</p>
+                <br>
+            </div><!-- end of col100-->
+            
+            <div class = "col100">
+                <form id = "rateEntry">
+                    <table id = "rateForm">
+                        <tr>
+                            <td>{{ loan_inputs.loan_amount }}</td>
+                            <td>{{ loan_inputs.interest_rate }}</td>
+                            <td>{{ loan_inputs.months }}</td>
+                        </tr>
+                    </table>
+                </form>
+            </div><!-- end of col100-->
+        </div><!-- end of "container" -->
+    </div> <!-- end of "calculator_banner" -->
+
+   
+    <div id = "payment">
+        <div class = "container">
+            <p id = "payment_heading">Payment Amount</p>
+            <p id = "payment_amount"></p>
+        </div> <!-- end of container -->
+        
+    </div><!-- end of payment -->
+
+    <div id = "calculator_results">
+
+        <div class = "container">
+            <table id = "amortization_table">
+                <tr id = "first_row">
+                    <th>Month</th>
+                    <th>Payment Amount</th>
+                    <th>Balance</th>
+                    <th>Interest</th>
+                    <th>Principal</th>
+                    <th>Total Interest Paid</th>
+                    <th>Total Principal Paid</th>
+                    <th>Total Paid</th>
+                </tr>
+
+            </table>
+        </div> <!-- end of "container" -->
+    </div> <!-- end of "calculator_results" -->
+{% endblock %}

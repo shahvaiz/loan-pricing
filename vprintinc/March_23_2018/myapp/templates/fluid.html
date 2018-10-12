@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      {% block description %}{% endblock %}
+      <title>{% block title %}{% endblock %}</title>
+      {% load staticfiles %}
+      {% block canonical %}{% endblock %}
+  <!-- {% block styles_additional %}{% endblock %} -->
+
+      <link rel='shortcut icon' href="{% static 'images/bfg-favicon.ico' %}" type='image/x-icon'/ >
+<!--
+      <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'> -->
+      <!-- remove http from google fonts URL to allow browser to use SSL -->
+      <link href='//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+      <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+      <link href='//fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900,100,200,300' rel='stylesheet' type='text/css'>
+
+     <!--  http://fontawesome.io/icons/ -->
+     <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
+      <link rel="stylesheet" href="{% static 'css/font-awesome-4.3.0/css/font-awesome.min.css' %}">
+      <script src="{% static 'javascript/jquery-1.11.3.min.js' %}"></script>
+
+
+      <link rel="stylesheet" type="text/css" href="{% static 'css/easydropdown.css' %}">
+
+      <script src="{% static 'javascript/effects.js' %}"></script> <!-- JS custom functions -->
+     <!--<script src="{% static 'javascript/easydropdown.js' %}"></script> -->
+      <script src="{% static 'javascript/jquery.easydropdown.min.js' %}"></script>
+      <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+
+      <!--<script src="{% static 'javascript/jquery.validate.min.js' %}"></script> -->
+
+      <script src="{% static 'javascript/val.js' %}"></script>
+  <!-- <script src="{% static 'javascript/jExpand.js' %}"></script>  -->
+
+
+    <!-- this file is the plugin for the currency mask: when a user enters a currency, it auto formats with commas and dollar sign i.e. $400,000 -->
+    <!-- https://github.com/RobinHerbots/jquery.inputmask -->
+     <script src="{% static 'javascript/jquery.inputmask.bundle.min.js' %}"></script>
+
+    <!-- JQUERY Slider files -->
+    <link href="{% static 'css/jquery-ui.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet/less" type="text/css" href="{% static 'css/style.css' %}" />
+
+
+  <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style_compiled.css' %}" /> -->
+    <script src="{% static 'javascript/jquery-ui.min.js' %}"></script>
+    <!-- <script src="{% static 'javascript/jquery-ui-1.11.3.custom/external/jquery/jquery.js' %}"></script> -->
+
+    <script src="{% static 'javascript/jquery.ui.touch-punch.min.js' %}"></script> <!--- add mobile support for jquery UI slider -->
+    <!-- JQUERY Slider Extension to add Labels -->
+    <link href="{% static 'css/jquery-ui-slider-pips.css' %}" rel="stylesheet">
+
+    <!-- Slick for carousel on home page -->
+    <link rel="stylesheet" type="text/css" href="{% static 'slick/slick.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'slick/slick-theme.css' %}"/>
+  <!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
+  <!--   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+    <script type="text/javascript" src="{% static 'slick/slick.min.js' %}"></script>
+
+    <script src="{% static 'javascript/jquery-ui-slider-pips.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'tooltipster/dist/css/tooltipster.bundle.min.css' %}" />
+    <script type="text/javascript" src="{% static 'tooltipster/dist/js/tooltipster.bundle.min.js' %}"></script>
+
+    <script src="{% static 'javascript/less.js' %}" type="text/javascript"></script> <!-- Less CSS JS -->
+
+    <!--<script src="{% static 'javascript/jquery-ui-1.11.3.custom/external/jquery/jquery.js' %}"></script> -->
+
+    <!-- http://blog.gaijindesign.com/jquery-making-sure-your-footer-always-sticks-to-the-bottom-of-the-page/ -->
+
+    {% block js %}{% endblock %}
+
+
+
+
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-54277262-1', 'auto');
+      ga('require', 'linkid', 'linkid.js');
+      ga('send', 'pageview');
+    </script>
+  </head>
+
+<body>
+
+{% block navigation %}
+<div id = "navbar">
+
+	<div class = "container-fixed">
+			<div id = "logo-sectionn">
+				<a href = "/"><span class="helper"></span><img id = "logo" src="{% static 'images/logo.png' %}"/ ></a>
+
+			</div>
+      <p id = "navicon">&#9776</p>
+
+			<div id = "links-sectionn" >
+        <ul>
+            <li><a href = "/about/">About</a></li>
+            <li><a href = "/contact/" >Contact</a></li>
+            <li><a href = "tel:855-548-0101" class = "ph-call"><img src="{% static 'images/telephone.png' %}" id = "telephone"/ >855-548-0101</a></li>
+            <li><a href = "/rates?tab=1" id = "navbar_button"><button class = "button-primary" type="button">Payments</button></a></li>
+        </ul>
+			</div><!-- end of div col-lg-8 -->
+
+	</div> <!-- end of container-fixed -->
+</div> <!-- end of "navbar -->
+
+<!-- toggle menu when the screen is resized -->
+<script>
+	$("#navicon").click(function(){
+	    $("#navbar ul").slideToggle("fast");
+	})
+
+	/* https://www.youtube.com/watch?v=uczefwaLJmI */
+	/* When the window is greater than 768, remove the "display: none" style attribute which we added */
+	$(window).resize(function () {
+		if ($(window).width() > 768 ) {
+			$("#navbar ul").removeAttr('style');
+		}
+	})
+</script>
+
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+<div class = "footer">
+  <div class= "container-wide">
+    <div class = "container-fixed">
+
+
+      <img id = "shield" src="{% static 'images/Icon-bfg.png' %}"/ >
+
+
+      <div class = "dyna-width">
+        <i class="fa fa-certificate fa-lg"></i><h5 id = "nmls">NMLS #1124970</h5><a href = "http://www.nmlsconsumeraccess.org" target="_blank" id = "nmls_link">www.nmlsconsumeraccess.org</a></div>
+
+            <div class = "dyna-width"><h5 id = "equal">BFG is an Equal Housing Lender<span><img id = "hud" src="{% static 'images/fheo100.png' %}"/ ></span></h5></div>
+
+      <h5 class = "disclaimer">All rate quotes are estimates and are subject to change. Rate quotes are not binding.<br>Programs are on a case by case basis. Certain restrictions apply.</h5>
+      
+	  <div class = "divsocialmedia" style="text-align:center;">
+<a target="_blank" href="https://www.facebook.com/buckinghamfg/" class="social-icons"><i class="fa fa-facebook"></i></a>
+
+<a target="_blank" href="https://twitter.com/buckinghamfg" class="social-icons"><i class="fa fa-twitter"></i></a>
+
+<a target="_blank" href="https://plus.google.com/108763393122402735421" class="social-icons"><i class="fa fa-google-plus"></i></a>
+
+<a target="_blank" href="https://www.linkedin.com/company/buckinghamfinancialgroup/" class="social-icons"><i class="fa fa-linkedin"></i></a>
+
+<a target="_blank" href="https://www.pinterest.com/bfgusa/" class="social-icons"><i class="fa fa-pinterest-p"></i></a>
+
+<a target="_blank" href="https://www.yelp.com/biz/buckingham-financial-group-vienna" class="social-icons"><i class="fa fa-yelp"></i></a>
+
+<a target="_blank" href="https://www.instagram.com/bfgusa/" class="social-icons"><i class="fa fa-instagram"></i></a>
+
+</div>
+	  <hr>
+      <div class = "dyna-width">
+        <h6 id = "copyright">Copyright 2018 Buckingham Financial Group, LLC</h6><h6 id = "dc">Built in Washington, DC</h6>
+    </div>
+    </div><!-- end of container fixed -->
+  </div><!-- end of conatiner wide -->
+</div><!-- end of footer-->
+</body>
+</html>

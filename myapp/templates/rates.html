@@ -1,0 +1,523 @@
+{% extends "fluid.html" %}
+{% block title %}Best Mortgage Interest Rates | Best Mortgage Calculator Vienna VA{% endblock %}
+{% block description %}<meta name="description" content="Calculate your mortgage savings. The calculators we provide here can help you decide what type of mortgage is best for you, whether you are considering purchasing a new home or deciding if it is the right time to refinance.">{% endblock %}
+{% block canonical %}<link rel="canonical" href="https://www.bfgusa.com/rates/" />{% endblock %}
+{% block js %}
+<style>
+.cls-ui-tabs-anchor{
+width: 90%;
+height: 28px !important;
+text-align: left !important;
+}
+
+#myTable.odd:hover {
+cursor: pointer !important;
+}
+tr.odd:hover {
+cursor: pointer !important;
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor:focus{
+outline: auto  #eeeeee !important;
+}
+.ui-tabs .ui-tabs-nav li:focus{
+outline: auto  #eeeeee !important;
+}
+
+.slidedown
+{
+ -moz-transform:rotate(360deg);
+  -webkit-transform:rotate(360deg);
+  transform:rotate(360deg);
+}
+
+.hidetext{
+display: none;
+}
+.tooltip {
+   position: relative;
+   display: inline-block;
+   /* border-bottom: 1px dotted black; */
+}
+.tooltip .tooltiptext {
+   visibility: hidden;
+   width: 210px;
+   background-color: #555;
+   color: #fff;
+   text-align: center;
+   border-radius: 6px;
+   padding: 10px 20px;
+   position: absolute;
+   z-index: 1;
+   top: -6px;
+   right: 125%;
+   margin-left: -60px;
+   opacity: 0;
+   transition: opacity 0.3s;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+.tooltip .tooltiptext::after {
+
+   content: " ";
+   position: absolute;
+   top: 50%;
+   left: 100%;
+   margin-top: -5px;
+   border-width: 5px;
+   border-style: solid;
+   border-color: transparent transparent transparent black;
+}
+.first_time_homebuyer {
+    width: 48%;
+    margin: 0 1%;
+   float: left;
+   margin-bottom: 20px;
+}
+.switch {
+ position: relative;
+ display: inline-block;
+ width: 90px;
+ height: 34px;
+ margin-top: 4px;
+}
+
+.switch input {display:none;}
+
+.slider {
+ position: absolute;
+ cursor: pointer;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background-color: #ccc;
+ -webkit-transition: .4s;
+ transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+ position: absolute;
+ content: "";
+ height: 26px;
+ width: 26px;
+ left: 4px;
+ bottom: 4px;
+ background-color: white;
+ -webkit-transition: .4s;
+ transition: .4s;
+ border-radius: 50%;
+}
+
+input:checked + .slider {
+ background-color: #3498db;
+}
+
+input:focus + .slider {
+ box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+ -webkit-transform: translateX(26px);
+ -ms-transform: translateX(26px);
+ transform: translateX(55px);
+}
+
+/*------ ADDED CSS ---------*/
+.slider:after
+{
+content:'No';
+color: white;
+display: block;
+position: absolute;
+transform: translate(-50%,-50%);
+top: 50%;
+left: 50%;
+font-size: 15px;
+font-family: Verdana, sans-serif;
+}
+
+input:checked + .slider:after
+{  
+ content:'Yes';
+ left: 44%;
+}
+@media screen and (max-width: 980px) and (min-width: 586px){
+.first_time_homebuyer {
+width: 28% ;
+  }
+}
+</style>
+<script>
+    $(document).ready(function() {
+
+		   if($('#st').html()=='Maryland'||$('#st').html()=='maryland'){
+$('.first_time_homebuyer').show();
+}else{
+$('.first_time_homebuyer').hide();
+}
+
+$(".rotate").click(function () {
+alert("bfgusa rate clicked");
+if($(".rotate").hasClass("rotate"))
+			{
+			$(this).removeClass('rotated')
+				
+				console.log("VPRINT RESHMA111"+$(".even").hasClass("rotate"));
+				
+			}
+			else{
+			 $(this).addClass("important");
+				console.log("VPRINT RESHMA111"+$(".even").hasClass("rotate")+"___555855");
+			}
+  $(this).toggleClass("down");
+})
+
+        // page will load with initial values
+        loan_amount_tooltip(); // shows the current loan amount as the user types
+        zc_lookup(); // if all values are typed in, the ajax request is sent to retrieve interest rates
+        //field_checks();
+        paymentCalculation(); // monthly payment calculator
+        //validation_rules();
+
+        maskInputValues(); // this must be outside of the keyup method, otherwise the cursor will jump on each keyup
+      //  $('.tooltip2').tooltipster();
+
+
+        // Tooltipster using dynamic live binding: http://iamceege.github.io/tooltipster/#options
+        $('body').on('mouseenter', '.tooltip2:not(.tooltipstered)', function(){
+          $(this)
+          .tooltipster()
+          .tooltipster('open');
+
+        });
+
+
+
+                // $("#myTable tr:not(.odd)").hide();
+                // $("#myTable tr.odd").click(function(){
+                //     $(this).next("tr").show();
+                //     //$(this).find(".arrow").toggleClass("up");
+                // });
+
+
+      // $("#show").click(function(){
+      //     $("#clickme").show();
+      // });
+
+//var input123 = document.getElementById("id_property_value");
+
+
+
+
+$('#progressbar').css({background: '#ccc'});
+
+        // if either keyup occurs on a textbox or a change occurs on a dropdown, or the user changes the credit score on the jquery slider "#slider" via the "slidestop" method
+        // if the user edits the Mortgage Rates form, call the Ajax request for to get a "quote"
+        $("#id_property_value, #id_loan_balance, #id_down_payment, #id_cash_out, #id_zip_code, #id_credit_score").on ("keyup", function(event){
+            loan_amount_tooltip(); // shows the current loan amount as the user types
+            zc_lookup(); // if all values are typed in, the ajax request is sent to retrieve interest rates
+        }); // end of keyup
+
+        $("#id_loan_type, #id_property_type").on ("change", function(event){
+            loan_amount_tooltip(); // shows the current loan amount as the user types
+            zc_lookup(); // if all values are typed in, the ajax request is sent to retrieve interest rates
+        }); // end of keyup
+
+          $("#circles-slider").on ("slidestop", function(event){
+            loan_amount_tooltip(); // shows the current loan amount as the user types
+            zc_lookup(); // if all values are typed in, the ajax request is sent to retrieve interest rates
+        }); // end of keyup
+
+        // if the user edits the Calculator form, call the ajax request for the Calculator view
+        $("#id_loan_amount_calculator, #id_interest_rate").on ("keyup", function(event){
+            paymentCalculation(); // monthly payment calculator
+        }); // end of keyup
+
+        $("#id_months").on ("change", function(event){
+            paymentCalculation(); // monthly payment calculator
+        }); // end of keyup
+    }); // end of document (function)
+</script> <!-- end of jquery ajax call -->
+
+{% endblock%}
+
+{% block content %}
+
+    <script>
+        // the "slider("float") and "slider("pips) extensions are a jquery extension
+        $(function() {
+
+            $( "#circles-slider" ).slider({
+                min: 580,
+                max: 800,
+                step: 20,
+                value: 720,
+                slide: function( event, ui ) {
+                    $( "#amount" ).val(ui.value);
+                },
+            })
+            .slider("float",  {
+
+            })
+            .slider("pips")
+        }).draggable();  // draggable adds touch support for Jquery slider on mobile
+
+    </script>
+
+    <script>
+        $(function() {
+            $( "#progressbar" ).progressbar({value: 62.5});
+        });
+    </script>
+
+    <div class = "container-wide">
+        <div id="tabs">
+            <ul id = "form-tabs">
+                <li><a href="#tabs-1" class="cls-ui-tabs-anchor">Mortgage Rates</a></li>
+                <li><a href="#tabs-2" class="cls-ui-tabs-anchor">Payment Calculator</a></li>
+            </ul>
+
+
+            <div id="tabs-1">
+                <div class = "sidebar">
+                    <h6>Loan Input Form</h6>
+                    <hr>
+                    <form id = "mainForm">
+                        <div id = "credit-box">
+                            <label>Credit Score</label>
+                            <div id="circles-slider"></div>
+                        </div>
+                        <div id = "loan_type_box">
+                            <label for="{{ loan_inputs.loan_type.id_for_label }}">Loan Type</label>
+                            {{ loan_inputs.loan_type }}
+                        </div>
+
+                        <div id = "zip_code_box">
+                            <label for="{{ loan_inputs.zip_code.id_for_label }}">Zip Code</label>
+                            {{ loan_inputs.zip_code }}
+                        </div>
+
+
+                        <div id = "loan_balance_box">
+                            <label for="{{ loan_inputs.loan_balance.id_for_label }}">Loan Balance</label>
+                            {{ loan_inputs.loan_balance }}
+                        </div>
+
+                         <div id = "down_payment_box">
+                            <label for="{{ loan_inputs.down_payment.id_for_label }}">Down Payment</label>
+                            {{ loan_inputs.down_payment }}
+                        </div>
+
+                        <div id = "property_value_box">
+                            <label for="{{ loan_inputs.property_value.id_for_label }}" id = "label_property_value">Property Value</label>
+                            {{ loan_inputs.property_value }}
+                        </div>
+
+
+
+                        <div id = "cash_out_box">
+                            <label for= "{{ loan_inputs.cash_out.id_for_label }}">Cash Out</label>
+                            {{ loan_inputs.cash_out }}
+
+                        </div>
+                        <div id = "user-tip">
+                            <p>Loan Amount: <span id = "dollar2">$</span><span id = "new"></span></p>
+                        </div>
+
+                        <div id = "property_type_box">
+                            <label for="{{ loan_inputs.property_type.id_for_label }}">Property Type</label>
+                            {{ loan_inputs.property_type }}
+                        </div>
+						<div class="first_time_homebuyer">
+<label>First Time Homebuyer</label>
+   <label class="switch">
+ <input type="checkbox" id="chkFirstTimeHomebuyer">
+ <span class="slider round"></span>
+</label></div>
+
+                        <!-- adding inline styles to prevent the divs from flashing on page load, as the CSS renders later -->
+                        <!-- http://stackoverflow.com/questions/7148595/proper-way-to-render-initially-hidden-html-elements -->
+                        <p id = "zcode" style="display: none"><i class="fa fa-exclamation-circle fa-lg"></i> Please call for zip codes outside of MD, VA, and DC.</p>
+                        <p id = "validation1" style="display: none"><i class="fa fa-exclamation-circle fa-lg"></i> Property Value must be at least $100,000</p>
+                        <p id = "validation3" style="display: none"><i class="fa fa-exclamation-circle fa-lg"></i> Property Value must be greater than Loan Balance</p>
+                        <p id = "validation5" style="display: none"><i class="fa fa-exclamation-circle fa-lg"></i> Property Value must be greater than Loan Amount</p>
+                        <p id = "validation2" style="display: none"><i class="fa fa-exclamation-circle fa-lg"></i> Loan Balance must be at least $100,000</p>
+                        <p id = "validation6" style="display: none"><i class="fa fa-exclamation-circle fa-lg"></i> Cash Out must be greater than 0</p>
+                        <p id = "validation8" style="display: none"><i class="fa fa-exclamation-circle fa-lg"></i> Cash Out Amount must be less than the Loan Balance</p>
+                        <p id = "validation4" style="display: none"><i class="fa fa-exclamation-circle fa-lg"></i> Loan Amount must be greater than $100,000</p>
+                        <p id = "validation7" style="display: none"><i class="fa fa-exclamation-circle fa-lg"></i> Loan Amount must be greater than $100,000</p>
+                     <!--    <p id = "perf"><i class="fa fa-exclamation-circle fa-lg"></i> You're awesome</p> -->
+
+
+                    </form>
+                </div><!-- end of sidebar -->
+
+
+
+
+
+                <div class = "mtg-info">
+                    <div class = "col12">
+
+                    <h3>Your Loan Information</h3>
+                    <p>Below is your loan information. The table below shows the interest rates and programs that we offer.</p>
+                    <hr>
+                </div>
+
+                    <div class = "dashboard">
+                        <h5>Loan-to-Value ratio (LTV)</h5>
+
+                        <div id="progressbar"><h5><span id="progressText">62.5</span>%</h5></div>
+                    </div>
+
+                    <div class = "dashboard">
+                        <h5 id = "dollar-title">Loan Amount</h5>
+                        <p id = "dollar">$<span id = "la">250,000</span></p>
+                    </div>
+
+                    <div class = "dashboard">
+                        <h5>County, State</h5>
+
+
+                        <p><span id = "ct">Montgomery</span>, <span id="st">Maryland</span></p>
+                    </div>
+
+                    <div id = "sorry">
+                        <h4>No programs are available for this set of inputs.</h4>
+                        <p>Try lowering the LTV ratio or raising the credit score :-)</p>
+                    </div>
+
+
+
+                    <div id = "resultsTable">
+                        <table id = "myTable">
+                            <caption>Loan Program options and interest rate table</caption>
+                            <tr id = "header_row">
+							    <th></th>
+                                <th>Rate</th>
+                                <th>APR</th>
+                                <th>Payment</th>
+                                <th>Program</th>
+                                <th>Points</th>
+                                <th>Closing Costs</th>
+                                <th>Apply</th>
+                            </tr>
+
+                        </table>
+                    </div><!-- end of "resultsTable -->
+                </div><!-- end of col8 -->
+
+            </div><!-- end of tab 1-->
+
+            <div id="tabs-2">
+                <div class = "sidebar2">
+                    <form id = "rateEntry">
+                        <div id = "la-box">
+                          <label>Loan Amount</label>
+                            {{ calculator_inputs.loan_amount_calculator }}
+                        </div>
+
+                        <div id = "int-rate-box">
+                            <tr><td><label>Interest Rate (%)</label></td></tr>
+                            <tr><td>{{ calculator_inputs.interest_rate }}</td><tr>
+                        </div>
+
+                        <div id = "term-box">
+                            <tr><td><label>Mortgage Term (years)</label></td></tr>
+                            <tr><td>{{ calculator_inputs.months }}</td></tr>
+                        </div>
+                    </form>
+                </div><!-- end of sidebar -->
+
+                <div class = "mtg-info">
+                    <h3>Mortgage Payment</h3>
+                    <p>View your monthly mortgage payment.</p>
+                    <hr>
+                    <div class = "dashboard-payments">
+                        <h5>Payment Amount</h5>
+                        <p id = "payment_amount"></p>
+
+                    </div><!-- end of col-lg-4 -->
+
+                   <!--  <div class = "dashboard-payments">
+                        <h5>Total Interest Repaid</h5>
+                        <p>$<span id = "total_interest_bill"></p>
+                    </div>
+                    <div class = "dashboard-payments">
+                        <h5>Total Amount Repaid</h5>
+                        <p>$<span id = "total_bill"></p>
+                    </div>
+
+
+                    <div id = "calculator_results">
+                        <table id = "amortization_table">
+                            <thead>
+                                <tr id = "first_row">
+                                    <th>Month</th>
+                                    <th>Payment Amount</th>
+                                    <th>Balance</th>
+                                    <th>Interest</th>
+                                    <th>Principal</th>
+                                    <th>Total Interest Paid</th>
+                                    <th>Total Principal Paid</th>
+                                    <th>Total Paid</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>  -->
+
+
+                </div><!-- end of col8 -->
+            </div> <!-- end of tab2 -->
+
+
+            <script>
+
+
+          // calling the Javascript function 'getParameterByName' to retrieve the URL string value for the variable called 'tab'
+          // when the user clickes on the "rates" button, the URL string is set to 1
+            var tab_value = getParameterByName('tab');
+            if (tab_value == 1 ) {
+                $( "#tabs" ).tabs({active: 1});
+            }
+            else
+                $( "#tabs" ).tabs({active: 0});
+
+            </script>
+
+            <div class="tooltip_templates">
+
+              <span class="tooltip_message_1"><p></p></span>
+              <span class="tooltip_message_2"><p></p></span>
+            </div>
+
+
+
+
+         </div>
+
+    </div><!-- end of container wide -->
+
+   <!--  <p>
+      <label for="amount">Minimum number of bedrooms:</label>
+      <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+    </p>
+
+     <p>
+      <label for="pv">Property Value</label>
+      <input type="text" id="pv" readonly style="border:0; color:#f6931f; font-weight:bold;">
+    </p>
+
+     -->
+
+    <!--   <p id = "validation9">Property Value must be greater than Loan Balance</p> -->
+<!--<script>
+  $("#myTable").on("click", "a", function(){
+        alert("The paragraph was clicked.");
+        });
+</script> -->
+
+{% endblock %}

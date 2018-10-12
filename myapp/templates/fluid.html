@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      {% block description %}{% endblock %}
+      <title>{% block title %}{% endblock %}</title>
+      {% load staticfiles %}
+      {% block canonical %}{% endblock %}
+  <!-- {% block styles_additional %}{% endblock %} -->
+
+      <link rel='shortcut icon' href="{% static 'images/bfg-favicon.ico' %}" type='image/x-icon'/ >
+<!--
+      <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'> -->
+      <!-- remove http from google fonts URL to allow browser to use SSL -->
+      <link href='//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+      <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+      <link href='//fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900,100,200,300' rel='stylesheet' type='text/css'>
+
+     <!--  http://fontawesome.io/icons/ -->
+     <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
+      <link rel="stylesheet" href="{% static 'css/font-awesome-4.3.0/css/font-awesome.min.css' %}">
+      <script src="{% static 'javascript/jquery-1.11.3.min.js' %}"></script>
+
+
+      <link rel="stylesheet" type="text/css" href="{% static 'css/easydropdown.css' %}">
+
+      <script src="{% static 'javascript/effects.js' %}"></script> <!-- JS custom functions -->
+     <!--<script src="{% static 'javascript/easydropdown.js' %}"></script> -->
+      <script src="{% static 'javascript/jquery.easydropdown.min.js' %}"></script>
+      <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+
+      <!--<script src="{% static 'javascript/jquery.validate.min.js' %}"></script> -->
+
+      <script src="{% static 'javascript/val.js' %}"></script>
+  <!-- <script src="{% static 'javascript/jExpand.js' %}"></script>  -->
+
+
+    <!-- this file is the plugin for the currency mask: when a user enters a currency, it auto formats with commas and dollar sign i.e. $400,000 -->
+    <!-- https://github.com/RobinHerbots/jquery.inputmask -->
+     <script src="{% static 'javascript/jquery.inputmask.bundle.min.js' %}"></script>
+
+    <!-- JQUERY Slider files -->
+    <link href="{% static 'css/jquery-ui.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet/less" type="text/css" href="{% static 'css/style.css' %}" />
+
+
+  <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style_compiled.css' %}" /> -->
+    <script src="{% static 'javascript/jquery-ui.min.js' %}"></script>
+    <!-- <script src="{% static 'javascript/jquery-ui-1.11.3.custom/external/jquery/jquery.js' %}"></script> -->
+
+    <script src="{% static 'javascript/jquery.ui.touch-punch.min.js' %}"></script> <!--- add mobile support for jquery UI slider -->
+    <!-- JQUERY Slider Extension to add Labels -->
+    <link href="{% static 'css/jquery-ui-slider-pips.css' %}" rel="stylesheet">
+
+    <!-- Slick for carousel on home page -->
+    <link rel="stylesheet" type="text/css" href="{% static 'slick/slick.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'slick/slick-theme.css' %}"/>
+  <!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
+  <!--   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+    <script type="text/javascript" src="{% static 'slick/slick.min.js' %}"></script>
+
+    <script src="{% static 'javascript/jquery-ui-slider-pips.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'tooltipster/dist/css/tooltipster.bundle.min.css' %}" />
+    <script type="text/javascript" src="{% static 'tooltipster/dist/js/tooltipster.bundle.min.js' %}"></script>
+
+    <script src="{% static 'javascript/less.js' %}" type="text/javascript"></script> <!-- Less CSS JS -->
+
+    <!--<script src="{% static 'javascript/jquery-ui-1.11.3.custom/external/jquery/jquery.js' %}"></script> -->
+
+    <!-- http://blog.gaijindesign.com/jquery-making-sure-your-footer-always-sticks-to-the-bottom-of-the-page/ -->
+
+    {% block js %}{% endblock %}
+
+
+
+
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-54277262-1', 'auto');
+      ga('require', 'linkid', 'linkid.js');
+      ga('send', 'pageview');
+    </script>
+	<!-- Google Analytics Added by VPrintinc-->
+	<meta name="google-site-verification" content="cS9NHnQR_dySDjlFX_EP_ID-lpvKExMU5W2L8NCJ3Vo" />
+<meta name="msvalidate.01" content="F38E19CF1B7FF9AA52E20F973025655A" />
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115913993-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-115913993-1');
+</script>
+<script type='application/ld+json'>
+{
+  "@context": "http://www.schema.org",
+  "@type": "BankOrCreditUnion",
+  "name": "BFGUSA",
+  "url": "https://www.bfgusa.com/",
+  "sameAs": [
+    "https://www.instagram.com/bfgusa/",
+    "https://www.yelp.com/biz/buckingham-financial-group-vienna",
+    "https://www.pinterest.com/bfgusa/",
+    "https://www.linkedin.com/company/buckinghamfinancialgroup/",
+    "https://plus.google.com/108763393122402735421",
+    "https://twitter.com/buckinghamfg",
+    "https://www.facebook.com/buckinghamfg/"
+  ],
+  "logo": "https://www.bfgusa.com/static/images/logo.png",
+  "image": "https://www.bfgusa.com/static/images/Icon-bfg.png",  "description": "Apply for your new home loan or refinance an existing mortgage in Vienna VA. We offer many lending options with great rates and exceptional service. Call (855) 548-0101 for a free mortgage consultation.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1595 Spring Hill Road",
+    "addressLocality": "Vienna",
+    "addressRegion": "Virginia",
+    "postalCode": "22182",
+    "addressCountry": "United States"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "38.926172",
+    "longitude": "-77.245195"
+  },
+  "hasMap": "https://www.google.com/maps/place/1595+Spring+Hill+Rd+%23310,+Vienna,+VA+22182/@38.926172,-77.2473837,17z/data=!3m1!4b1!4m5!3m4!1s0x89b64a5e91605bff:0xc0fdd3577f5a1053!8m2!3d38.926172!4d-77.245195",
+  "openingHours": "Mo, Tu, We, Th, Fr 09:00-22:00 Sa, Su 13:00-18:00",
+    "telephone": "(301) 765-0100",
+    "priceRange": "$$"
+  }
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "MortgageLoan",
+  "name": "VA loans",
+  "url": "https://www.bfgusa.com/valoans",
+  "description": "Designed to offer long-term financing to American veterans. Compare VA home loan options and calculate payment. Shop now with BFGUSA Vienna VA and get home loans with no down payment."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "MortgageLoan",
+  "name": "Easy investor loans",
+  "url": "https://www.bfgusa.com/easyinvestorloan",
+  "description": "We offer No Doc Investor Loans in VA, MD and DC. This loan requires no verification of employment or income. First time investors are also welcome. Apply for the best investor loans."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "MortgageLoan",
+  "name": "Home loans",
+  "url": "https://www.bfgusa.com/homeexperts",
+  "description": "Apply for your new home loan or refinance an existing mortgage in Vienna VA. We are licensed mortgage professionals, offer many lending options with great rates and exceptional service. Call (855) 548-0101 for a free mortgage consultation."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "MortgageLoan",
+  "name": "Adjustable rate mortgage",
+  "url": "https://www.bfgusa.com/adjustableratemortgage",
+  "description": "An Adjustable Rate Mortgage (ARM) typically offers a lower initial interest rate than a traditional 30-year fixed loan. They may be the best choice for your purchase or refinance. Call (855) 548-0101 for a free mortgage consultation."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "MortgageLoan",
+  "name": "Conforming residential mortgages",
+  "url": "https://www.bfgusa.com/bankstatement",
+  "description": "Conforming residential mortgages include Conventional mortgages, FHA and VA loans. For conventional loans, the guidelines are established by Fannie Mae and Freddie Mac and all mortgages are insured by them. 100% financing home loans."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "MortgageLoan",
+  "name": "Stated income",
+  "url": "https://www.bfgusa.com/investor",
+  "description": "The Stated Income / No-Income doc program is ideal for those who are self-employed and cannot qualify or document their income via tax returns, pay stubs and W2s. Loans for Investment Properties, Cashout Refinancing."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "MortgageLoan",
+  "name": "Foreign national borrower programs",
+  "url": "https://www.bfgusa.com/foreignnational",
+  "description": "Financing for Diplomats or Foreign Nationals require specialized loans which are not offered by Fannie Mae, Freddie Mac, HUD, or VA. These programs are not offered by all banks or investors. The institutions which do offer these loans set their own guidelines."
+}
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5CQRFP5');</script>
+<!-- End Google Tag Manager -->
+
+
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '482868105475384');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=482868105475384&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+  </head>
+<!-- Start of LiveChat (www.livechatinc.com) code -->
+<script type="text/javascript">
+window.__lc = window.__lc || {};
+window.__lc.license = 9840910;
+(function() {
+  var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
+  lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+})();
+</script>
+<!-- End of LiveChat code -->
+
+<style>
+.header-top{
+width: 100%;
+height:110px;
+
+background: #fff;
+border-bottom: 1px solid #D7D7D7;
+}
+.header_social{
+width: 33.33%;
+   float: left;
+   margin-top: 45px;
+}
+.header_logo{
+width: 33.33%;
+   text-align: center;
+   float: left;
+}
+.header_button{
+   width: 33.33%;
+   float: left;
+   margin-top: 35px;
+   text-align: right !important;
+}
+.social {
+text-decoration: none;
+display: inline-block;
+margin: 0 3px;
+background: #c42056;
+color: #ffffff !important;
+border-radius: 50%;
+padding: 10px;
+border: 0px solid #c42056;
+width: 16px;
+height: 16px;
+font-size: 14px;
+}
+.header_logo img {
+   margin-top: 10px;
+   margin-bottom: 0px;
+}
+
+.img-responsive {
+   display: block;
+   max-width: 75%;
+   height: auto;
+}
+
+#navbar{
+margin-top:10px;
+   height: 32px !important;
+   border-bottom: 1px solid #D7D7D7 !important;
+}
+@media screen and (max-width: 1024px) and (min-width: 991px) and (orientation:landscape){
+#navbar li{
+padding-left: 1px !important;
+padding-right: 1px !important;
+}
+}
+#navbar li{
+       line-height: 25px !important;
+       height:31px !important;
+       padding-left: 10px !important;
+       padding-right: 10px !important;
+}
+#navbar ul li a:hover{
+   border-bottom: 3px solid #c42056;
+background-color: #ffffff  !important;
+}
+
+@media  (max-width: 980px) {
+.cls-phone{
+visibility:visible !important;
+}
+.cls-menuphone
+{
+display:none !important;
+}
+.header_social{
+text-align: center;
+width: 100%;
+}
+.header_logo{
+float: unset !important;
+width:unset !important;
+}
+#logo{
+float:unset !important;
+}
+.header_button{
+width: 100%;
+text-align: center !important;
+}
+.header-top{
+border-bottom: 1px solid #ffffff;
+}
+#navbar ul{
+display: none;
+
+}
+}
+@media  (min-width: 981px) {
+#navbar ul{
+float: none !important;
+display:  inline-block !important;
+
+}
+}
+</style>
+<body>
+
+{% block navigation %}
+
+<div class="header-top">
+    <div class="container-fixed">
+        <div class="header_social">
+		<div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+ new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'ar,en,es,hi,ko,pa,pt,ru,ur', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+		<!--
+			<a target="_blank" href="https://www.facebook.com/buckinghamfg/" class="social"><i class="fa fa-facebook"></i></a>
+			<a target="_blank" href="https://twitter.com/buckinghamfg" class="social"><i class="fa fa-twitter"></i></a>
+			<a target="_blank" href="https://plus.google.com/108763393122402735421" class="social"><i class="fa fa-google-plus"></i></a>
+			<a target="_blank" href="https://www.linkedin.com/company/buckinghamfinancialgroup/" class="social"><i class="fa fa-linkedin"></i></a>
+			<a target="_blank" href="https://www.pinterest.com/bfgusa/" class="social"><i class="fa fa-pinterest-p"></i></a>
+			<a target="_blank" href="https://www.yelp.com/biz/buckingham-financial-group-vienna" class="social"><i class="fa fa-yelp"></i></a>
+			<a target="_blank" href="https://www.instagram.com/bfgusa/" class="social"><i class="fa fa-instagram"></i></a> -->
+		</div>
+		<div class="header_logo">
+				<a href = "/"><span class="helper"></span><img id = "logo" src="{% static 'images/bfgusa-logo.jpg' %}"/ ></a>
+		</div>
+		<div class="header_button">
+			<a href="tel:855-548-0101" id="navbar_button" class="cls-phone" style="visibility:hidden;"><button class="button-primary" type="button">855-548-0101</button></a>
+			 <a href="https://www.blink.mortgage/app/signup/p/bfgusa" target="_blank" id="navbar_button"><button class="button-primary" type="button">Apply Now</button></a>
+
+
+
+			<div style="clear:both;"></div>
+
+		</div>
+
+	</div>
+</div>
+<div id="navbar">
+
+	<div class="container-fixed">
+
+      <p id="navicon">&#9776</p>
+
+			<div id="links-sectionn">
+			<!--div style="float:left;"-->
+			<div>
+        <ul>
+		<li><a href="/">Home</a></li>
+            <li><a href="/about/">About</a></li>
+			<li><a href="/mortgageloanoptions">MORTGAGE LOAN OPTIONS</a></li>
+			<li><a href="/realtors">Realtor/ Agent</a></li>
+            <li><a href="/rates/?tab=1">Calculator</a></li>
+            <li><a href="/contact/">Contact</a></li>
+
+			<li><a href = "tel:855-548-0101" class = "ph-call cls-menuphone" style="font-size: 16px;color: #4d4d4d;text-decoration:none;"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;855-548-0101</a></li>
+
+        </ul>
+		</div>
+		<!--div style="float:right;">
+		<a href = "tel:855-548-0101" class = "ph-call cls-menuphone" style="font-size: 16px;color: #4d4d4d;text-decoration:none;"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;855-548-0101</a>
+		</div-->
+			</div><!-- end of div col-lg-8 -->
+
+	</div> <!-- end of container-fixed -->
+</div>
+<div style="clear:both;"></div>
+
+<!--div id = "navbar">
+
+	<div class = "container-fixed">
+			<div id = "logo-sectionn">
+				<a href = "/"><span class="helper"></span><img id = "logo" src="{% static 'images/logo.png' %}"/ ></a>
+
+			</div>
+      <p id = "navicon">&#9776</p>
+
+			<div id = "links-sectionn" >
+        <ul>
+            <li><a href = "/about/">About</a></li>
+			 <li><a href = "/mortgageloanoptions">MORTGAGE LOAN OPTIONS</a></li>
+            <li><a href = "/contact/" >Contact</a></li>
+            <li><a href = "tel:855-548-0101" class = "ph-call"><img src="{% static 'images/telephone.png' %}" id = "telephone"/ >855-548-0101</a></li>
+            <li><a href = "/rates?tab=1" id = "navbar_button"><button class = "button-primary" type="button">Payments</button></a></li>
+        </ul>
+			</div><!-- end of div col-lg-8 -->
+
+	<!--/div--> <!-- end of container-fixed -->
+<!--/div--> <!-- end of "navbar -->
+
+<!-- toggle menu when the screen is resized -->
+<script>
+	$("#navicon").click(function(){
+	    $("#navbar ul").slideToggle("fast");
+	})
+
+	/* https://www.youtube.com/watch?v=uczefwaLJmI */
+	/* When the window is greater than 768, remove the "display: none" style attribute which we added */
+	$(window).resize(function () {
+		if ($(window).width() > 768 ) {
+			$("#navbar ul").removeAttr('style');
+		}
+	})
+</script>
+
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+<div class = "footer">
+  <div class= "container-wide">
+    <div class = "container-fixed" style="padding-top:20px !important;">
+
+
+      <!--img id = "shield" src="{% static 'images/Icon-bfg.png' %}"/ -->
+
+
+      <div class = "dyna-width">
+        <i class="fa fa-lg"></i><h5 id = "nmls">NMLS #1124970</h5><a href = "http://www.nmlsconsumeraccess.org" target="_blank" id = "nmls_link">www.nmlsconsumeraccess.org</a></div>
+
+            <div class = "dyna-width"><h5 id = "equal">BFG is an Equal Housing Lender<span><img id = "hud" src="{% static 'images/fheo100.png' %}"/ ></span></h5></div>
+
+      <h5 class = "disclaimer">All rate quotes are estimates and are subject to change. Rate quotes are not binding.<br>Programs are on a case by case basis. Certain restrictions apply.</h5>
+
+	  <div class = "divsocialmedia" style="text-align:center;">
+<a target="_blank" href="https://www.facebook.com/buckinghamfg/" class="social-icons"><i class="fa fa-facebook"></i></a>
+
+<a target="_blank" href="https://twitter.com/buckinghamfg" class="social-icons"><i class="fa fa-twitter"></i></a>
+
+<a target="_blank" href="https://plus.google.com/108763393122402735421" class="social-icons"><i class="fa fa-google-plus"></i></a>
+
+<a target="_blank" href="https://www.linkedin.com/company/buckinghamfinancialgroup/" class="social-icons"><i class="fa fa-linkedin"></i></a>
+
+<a target="_blank" href="https://www.pinterest.com/bfgusa/" class="social-icons"><i class="fa fa-pinterest-p"></i></a>
+
+<a target="_blank" href="https://www.yelp.com/biz/buckingham-financial-group-vienna" class="social-icons"><i class="fa fa-yelp"></i></a>
+
+<a target="_blank" href="https://www.instagram.com/bfgusa/" class="social-icons"><i class="fa fa-instagram"></i></a>
+
+</div>
+	  <hr>
+      <div class = "dyna-width">
+        <h6 id = "copyright">© 2018 Buckingham Financial Group, LLC</h6><h6 id = "dc">Built in Washington, DC</h6>
+    </div>
+    </div><!-- end of container fixed -->
+  </div><!-- end of conatiner wide -->
+</div><!-- end of footer-->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CQRFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</body>
+</html>

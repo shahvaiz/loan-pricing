@@ -1,0 +1,151 @@
+{% extends "fluid.html" %}
+{% block title %}Best Mortgage Lenders in Vienna VA | Home Loan Financing | Pre-Qualify - BFGUSA{% endblock %}
+{% block description %}<meta name="description" content="Apply for your new home loan or refinance an existing mortgage in Vienna VA. We offer many lending options with great rates and exceptional service. Call (855) 548-0101 for a free mortgage consultation.">{% endblock %}
+{% block canonical %}<link rel="canonical" href="https://www.bfgusa.com/" />{% endblock %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class = "hero">
+	<h1>We Are Mortgage Bankers</h1>
+	<h4>Residential and Commercial Loans</h4>
+	<a href = "/rates" id = "navbar_button"><button class = "button" type="button">Get Rates</button></a>
+</div>
+
+<script>
+$(document).ready(function(){
+  $('.quote-panels').slick({
+    dots: true,
+    autoplay: true
+  });
+});
+</script>
+
+<div class = "main-features">
+	<div id = 'feature-section'>
+
+		<div class = "feature-block">
+			<i class="fa fa fa-money fa-3x"></i>
+			<h4>Conforming Residential Mortgages</h4>
+
+			<p>Full Income Documentation Loans</p>
+			<!-- <a href ="/programs#commercial">Read More</a> -->
+			<a href ="/bankstatement"><button class = "button">Read More</button></a>
+			<!--<a href ="/programs/#business"><button class = "button">Read More</button></a>-->
+		</div>
+		<div class = "feature-block">
+			<i class="fa fa-building fa-3x"></i>
+			<h4>Stated Income / No-Income Doc Mortgages</h4>
+			<p>Bank Statement Program</p>
+			<!-- <a href ="/programs#residential">Read More</a> -->
+			<a href ="/investor"><button class = "button">Read More</button></a>
+		</div>
+
+
+
+		<div class = "feature-block">
+			<i class="fa fa-flag fa-3x" aria-hidden="true"></i>
+			<h4>Foreign National / Diplomat Mortgages</h4>
+			<p>12 Month Bank Statements or Full Documentation</p>
+			<!-- <a href ="/programs#business">Read More</a> -->
+			<a href ="/foreignnational"><button class = "button">Read More</button></a>
+		</div>
+
+	</div>
+</div>
+
+<div id = "bullet-container">
+	<div class = "container-fixed">
+		<h2 id = "big-statement">Life is Full of Difficult Choices</h2>
+		<p id = "small-statement">Buckingham Financial Group is your home for service par excellance.</p>
+
+		<div class = "bulletbox">
+			<img src="{% static 'images/percent.png' %}">
+			<h4>Jumbo Loans</h4>
+			<p>Loan programs starting at $625,000 up to $3 million.</p>
+		</div>
+
+		<div class = "bulletbox">
+			<img src="{% static 'images/savings.png' %}">
+			<h4>Zero points. Zero closing costs</h4>
+			<p>Save money at the closing table. Let BFG cover all closing costs.</p>
+		</div>
+
+		<div class = "bulletbox">
+			<img src="{% static 'images/briefcase.png' %}">
+			<h4>Invesment Properties</h4>
+			<p>Loan financing up to 85% of the value of the investment property.</p>
+		</div>
+
+		<div class = "bulletbox">
+			<img src="{% static 'images/fence.png' %}">
+			<h4>Second Homes</h4>
+			<p>Take advantage of special financing for non-primary residences.</p>
+		</div>
+
+		<div class = "bulletbox">
+			<img src="{% static 'images/institution.png' %}">
+			<h4>FHA/VA loans</h4>
+			<p>Government backed loans making it easier for first time homebuyers.</p>
+		</div>
+
+		<div class = "bulletbox">
+			<img src="{% static 'images/credit.png' %}">
+			<h4>Credit as low as 580</h4>
+			<p>Got a lower credit score? BFG can offer you loans with credit as low as 580.</p>
+		</div>
+
+	</div>
+</div>
+
+<div id = "quote-container">
+	<h2>Hear from our customers</h2>
+	<div class = "quote-panels">
+		<div>
+			<!-- <i class="fa fa-quote-left fa-3x"></i> -->
+			<h3>"Buckingham Financial Group has helped us finance and refinance our mortgages for me and my friends multiple times. Each time we benefitted with additional dollar savings. Thank you for excellent service."</h3>
+			<h6>Norman Hess</h6>
+			<!-- <p>Maryland Homeowner</p> -->
+			<!-- <img src="{% static 'images/face.png' %}"> -->
+		</div>
+
+	<!-- 	<i class="fa fa-quote-left fa-3x"></i> -->
+		<div>
+			<h3>"I have used the services of Buckingham Financial Group multiple times both for residential purchase and refinance and business financing. I have found their entire staff to be utmost professionals. I have referred many members of my family and community. They are all as happy as I am with their service. I have never regretted referring them."
+			</h3>
+			<h6>Rajinder Sandhu & Richhpal Randhawa</h6>
+			<!-- <p>Maryland Homeowner</p> -->
+			<!-- <img src="{% static 'images/face.png' %}"> -->
+		</div>
+
+		<!-- <i class="fa fa-quote-left fa-3x"></i> -->
+		<div>
+			<h3>"I am a shopper, and after shopping around I decided to use Buckingham Financial Group for mortgages on my house. I have used BFG multiple times. Each time I have been treated with white gloves. Their customer service is outstanding and very responsive. They are trustworthy and honest. There are no junk fees or hidden costs. I have recommended them to many friends who had the same experience as mine."</h3>
+			<h6>Trina & Bobby Porter</h6>
+		<!-- <p>Maryland Homeowner</p> -->
+		<!-- <img src="{% static 'images/face.png' %}"> -->
+		</div>
+
+		<div>
+			<h3>"With BFG you cannot go wrong. I will recommend and refer this company to anyone without any reservation. The entire staff is eager to help. Not only did they provide me with the best rate but also service par excellance."</h3>
+			<h6>Donna Davis</h6>
+		<!-- <p>Maryland Homeowner</p> -->
+		<!-- <img src="{% static 'images/face.png' %}"> -->
+		</div>
+	</div><!-- end of quote panels -->
+
+</div><!-- end of quote container -->
+
+
+
+
+<div id = "ready">
+	<div class = "container-fixed">
+		<h2>Ready to get started?</h3>
+		<p>Use our online rate calculator to check what programs and rates we can offer.</p>
+		<a href="/rates/"><button type="submit" class = "button-primary" type="button">Check Rates</button></a>
+	</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,168 @@
+{% extends "fluid.html" %}
+{% load staticfiles %}
+{% load humanize %}
+
+{% block title %}Application Form - Buckingham Financial Group{% endblock %}
+{% block description %}<meta name="description" content="Fill out the information below to begin the process. A loan consultant will contact you in 24 hours.">{% endblock %}
+{% block canonical %}<link rel="canonical" href="https://www.bfgusa.com/application/" />{% endblock %}
+
+{% block content %}
+
+
+<script>
+    $(document).ready(function() {
+
+    }); // end of document (function)
+</script> <!-- end of jquery ajax call -->
+
+<div id = "application-container">
+    <div class = "container-fixed">
+        <div class = "short-application">
+
+
+            <div id = "submission">
+                <h4>Thank you!</h4>
+                <p>Your application has been submitted. A loan consultant will contact you within 48 hours.</p>
+            </div>
+
+
+
+            <div id = "app">
+
+                <h2>Short Application</h2>
+                <p>Fill out the information below to begin the process. A loan consultant will contact you in 24 hours.</p>
+                <hr class = "heavy">
+                <a href='https://www.expeditedssl.com/simple-ssl-scanner/scan?target_domain=www.bfgusa.com' target='_blank'><img src='https://www.expeditedssl.com/ssl-secure-badge.png'  alt='Expedited SSL Scanner'></a>
+
+                <form id = "loan_info_form" action="" method="POST">
+
+                    <div class = "form-heading">
+                    <h4>Section 1: Loan Information</h4>
+                    <p>Information about your loan</p>
+                    <hr>
+                </div>
+                    <div class = "app-box">
+                        <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                        {{ form.first_name }}
+                        {{ form.first_name.errors }}
+                    </div>
+
+                    <div class = "app-box">
+                        <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                        {{ form.last_name }}
+                        {{ form.last_name.errors }}
+                    </div>
+
+                    <div class = "app-box">
+                        <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                        {{ form.phone_number }}
+                        {{ form.phone_number.errors }}
+                    </div>
+
+                    <div class = "app-box">
+                        <label for="{{ form.email.id_for_label }}">Email</label>
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </div>
+
+                    <div class = "app-box" id = "section-end">
+                        <label for="{{ form.email.id_for_label }}">Social Security Number (optional)</label>
+                        {{ form.ssn }}
+                        {{ form.ssn.errors }}
+                    </div>
+
+
+                    <div class = "form-heading2">
+                        <h4 id = "section2">Section 2: Additional Information</h4>
+                        <p>Information about your loan</p>
+                    <hr></div>
+
+                    <div id = "msg-box">
+                        <label for="{{ form.first_name.id_for_label }}">Comments</label>
+                        {{ form.message }}
+                        {{ form.message.errors }}
+                    </div>
+
+                    <div id= "app-submit-btn">
+                        <button class = "button-primary" type="submit">Submit</button>
+                    </div>
+
+                {% csrf_token %}
+
+                </form>
+            </div>
+
+
+        </div> <!-- end of "col8" -->
+
+        <div id = "loan-summary">
+            <h2>Your Loan Info</h2>
+            <p>Loan details</p>
+            <hr class = "heavy">
+            <table id = "loan_display">
+
+                <tr><th colspan = '2' class = "section-th">Property Information</th></tr>
+                <tr><th class = "first-row">Program</td><td>{{ abc.program }}</td></tr>
+                <tr><th>Loan Type</td><td>{{ abc.loan_type }}</td></tr>
+                <tr><th>Credit Score</th><td>{{ abc.credit_score }}</td></tr>
+                <tr><th>Rate</td><td>{{ abc.rate }}%</td></tr>
+                <tr><th>APR</td><td>{{ abc.apr }}%</td></tr>
+                <tr><th>Payment</td><td>${{ abc.payment | intcomma }}</td></tr>
+
+                <tr><th colspan = '2' class = "section-th">Loan Information</th></tr>
+                <tr><th class = "header">Loan Amount</td><td>${{ abc.loan_amount | intcomma }}</td></tr>
+                <tr><th class = "header">Loan Balance</td><td>${{ abc.loan_balance | intcomma }}</td></tr>
+
+                {% if abc.loan_type == "Purchase" %}
+                    <tr><th class = "header">Purchase Price</td><td>${{ abc.property_value | intcomma }}</td></tr>
+                {% else  %}
+                    <tr><th class = "header">Property Value</td><td>${{ abc.property_value | intcomma }}</td></tr>
+                {% endif %}
+
+                {% if abc.loan_type == "Purchase" %}
+                    <tr><th class = "header">Down Payment</td><td>${{ abc.down_payment | intcomma }}</td></tr>
+                {% endif %}
+
+                {% if abc.loan_type == "Refi: Cash Out" %}
+                    <tr><th class = "header">Cash Out</td><td>${{ abc.cash_out | intcomma }}</td></tr>
+                {% endif %}
+
+                <tr><th class = "header">Points</td><td>{{ abc.points }}</td></tr>
+
+                <tr><th>Property Type</td><td>{{ abc.property_type }}</td></tr>
+
+                <tr><th colspan = '2' class = "section-th">Title Information</th></tr>
+                <tr><th>Zip Code</td><td>{{ abc.zip_code }}</td></tr>
+                <tr><th>County</td><td>{{ abc.county }}</td></tr>
+                <tr><th>State</td><td>{{ abc.state | capfirst }}</td></tr>
+                <tr><th>Closing Costs</td><td>${{ abc.cc | intcomma}}</td></tr>
+
+                </table>
+
+        </div> <!-- end of col4 -->
+
+        {% if abc %}
+            <script>
+                var loan_display = document.getElementById("loan-summary");
+                loan_display.style.display = 'block';
+            </script>
+        {% endif %}
+
+        {% if submission == 1 %}
+            <script>
+                var thank_you = document.getElementById("submission");
+                var short_application = document.getElementById("app");
+                var loan_sum = document.getElementById("loan-summary");
+
+                thank_you.style.display = 'block';
+                short_application.style.display = 'none';
+
+                loan_sum.style.display = 'none';
+            </script>
+        {% endif %}
+    </div> <!-- end of container fixed -->
+</div> <!-- end of container wide -->
+
+
+
+{% endblock %}

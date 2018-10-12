@@ -1,0 +1,52 @@
+{% extends "fluid.html" %}
+{% load staticfiles %}
+
+{% block title %}Loan Programs - Buckingham Financial Group{% endblock %}
+
+{% block content %}
+
+<div class = 'program-section'>
+    <div class = 'container-fixed'>
+      <div id = 'toc'>
+        <a href ="#commercial" class = "heading">Commercial Loans</a>
+        <a href ="#sba">SBA Loans</a>
+        <a href ="#bank">Bank Loans</a>
+        <a href ="#hardmoney">Hard Money Loans</a>
+      </div>
+      <div id = 'programs'>
+        <h2>Commercial Loans</h2>
+        <p>Non-residential building for commercial use.</p>
+        <hr>
+        <h3>Limits</h3>
+        <p>$300,000 to $10 Million
+
+        <p class = "example" id = "example">Complex, warehouse, auto repair, office, church, retail, strip mall, self-storage, multi-use, 5 units</p>
+
+        <h3>SBA (Small-Business Administration)</h3>
+        <ul>
+            <li>Underwritten by SBA guidelines</li>
+            <li>Insured by the government</li>
+            <li>SBA funding fee</li>
+        </ul>
+
+        <h3>Bank</h3>
+        <ul>
+            <li>Underwritten by bank guidelines</li>
+            <li>No SBA funding fee, no insurance from SBA</li>
+        </ul>
+
+        <h3>Hard Money</h3>
+        <ul>
+            <li>Underwritten by individual investor on their own terms* (case by case basis)</li>
+            <li>Private investors do not consider credit score/income*
+            <li>Higher interest rate and down payment/li>
+            <li>stricly based on LTV</li>
+        </ul>
+
+         <a href="https://www.blink.mortgage/app/signup/p/bfgusa" target="_blank"><button type="submit" class = "button-primary" type="button">Apply Now</button></a>
+    		<a href="/contact/"><button type="submit" class = "button-primary" type="button">Contact Us</button></a>
+      </div>
+    </div> <!-- end of container fixed -->
+</div> <!-- end of container wide -->
+
+{% endblock %}

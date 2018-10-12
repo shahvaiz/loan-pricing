@@ -1,0 +1,87 @@
+{% extends "fluid.html" %}
+{% load staticfiles %}
+
+{% block title %}Contact Us - BFGUSA - Home Loan Lenders Near Me | Best Jumbo Loan Lenders Vienna VA{% endblock %}
+{% block description %}<meta name="description" content="At BFGUSA, we are always here to help you when it comes to your mortgage needs. If you are in need of a home loan, looking to refinance your current mortgage, please feel free to contact our mortgage consultant for more help.">{% endblock %}
+{% block canonical %}<link rel="canonical" href="https://www.bfgusa.com/contact/" />{% endblock %}
+
+{% block content %}
+
+<div class = 'contactpg'>
+    <div id = 'contact-us-page'>
+
+        <div id = 'address-info'>
+            <h2>Mailing Info</h2>
+            <p>Official correspondance information</p>
+            <hr class = "heavy">
+            <h4>Buckingham Financial Group</h4>
+            <p>1595 Spring Hill Road, Suite 310<br>
+                Vienna, VA 22182<br>
+                <b>855.548.0101 (toll free)</b><br>
+                301.765.0100 (local)<br>
+                301.765.1100 (fax)<br>
+                support@bfgusa.com
+            </p>
+            <h4>Hours</h4>
+            <p>Mon - Fri, 9am - 10pm EST<br>
+            Sat - Sun, 12pm - 6pm EST</p>
+        </div>
+
+        <div id = 'contact-section'>
+
+            <h2>Send us a message</h2>
+            <p>We'll respond within 48 hours</p>
+            <hr class = "heavy">
+            <form id = "inquiry" action="" method="POST">
+                <div class = "contact-input-box">
+                    <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                    {{ form.first_name }}
+                    {{ form.first_name.errors }}
+                </div>
+
+                <div class = "contact-input-box">
+                    <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                    {{ form.last_name }}
+                    {{ form.last_name.errors }}
+                </div>
+
+                <div class = "contact-input-box">
+                    <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                    {{ form.phone_number }}
+                    {{ form.phone_number.errors }}
+                </div>
+
+                <div class = "contact-input-box">
+                    <label for="{{ form.email.id_for_label }}">Email</label>
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </div>
+
+                <div class = "contact-comment-box">
+                    <label for="{{ form.comment.id_for_label }}">Message</label>
+                    {{ form.comment }}
+                    {{ form.comment.errors }}
+                </div>
+
+                <div id= "contact-submit-btn">
+                    <button class = "button-primary" type="submit">Submit</button>
+                </div>
+
+
+                {% csrf_token %}
+            </form>
+
+            {% if submission == 1 %}
+                <div id = "acknowledgement">
+                    <p>Thanks! We've received your message.</p>
+                </div>
+                <script>
+                    var inq_form = document.getElementById("inquiry");
+                    inq_form.style.display = 'none';
+                </script>
+            {% endif %}
+        </div>
+    </div> <!-- end of container fixed -->
+</div> <!-- end of container wide -->
+
+{% endblock %}
