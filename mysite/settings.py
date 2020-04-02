@@ -10,26 +10,28 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 
 import sys
+import os
+import dj_database_url
 #sys.path.append('/Users/shahvaiz/sites/potomac_rates_calculation/potomac_rates_calculation')
 #sys.path.append('https://github.com/shahvaiz/potomac_rates_calculation/potomac_rates_calculation/')
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 #http://stackoverflow.com/questions/6367014/how-to-send-email-via-django
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-#EMAIL_HOST_USER = 'support@buckinghamfg.com'
-#EMAIL_HOST_PASSWORD = 'maryland74'
 EMAIL_HOST_USER = 'support@bfgusa.com'
 EMAIL_HOST_PASSWORD = 'maryland20'
-#EMAIL_HOST_PASSWORD = os.environ['EMAILPW']
 EMAIL_PORT = 587
 
-#comment this line when pushing to production; uncomment when testing locally
-#SSLIFY_DISABLE = True
+# comment this line when pushing to production; uncomment when testing locally
+# SSLIFY_DISABLE = True
+# EMAIL_HOST_USER = 'support@buckinghamfg.com'
+# EMAIL_HOST_PASSWORD = 'maryland74'
+# EMAIL_HOST_PASSWORD = os.environ['EMAILPW']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -40,16 +42,16 @@ SECRET_KEY = 'q$)^ymr=+w9qe4ih8_!4xezlr+a@!997-joypgch7(js#@&h0s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#TEMPLATE_DEBUG = True
+
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') # SSL Cert
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') # SSL Cert
 
 # Application definition
 
-#EMAIL_HOST_PASSWORD = os.environ['MY_PASSWORD_THAT_YOU_CANT_KNOW']
+# EMAIL_HOST_PASSWORD = os.environ['MY_PASSWORD_THAT_YOU_CANT_KNOW']
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -61,7 +63,6 @@ INSTALLED_APPS = (
     'myapp',
     'storages',
     'boto',
-    #'south',
     'static_precompiler',
     'django.contrib.humanize',
 )
@@ -77,7 +78,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'mysite.urls'
 
-#WSGI_APPLICATION = 'myapp.wsgi.application'
+# WSGI_APPLICATION = 'myapp.wsgi.application'
 
 GOOGLE_RECAPTCHA_SECRET_KEY = '6LdjOmYUAAAAAL0N_f3qpDKtldLuvydgzsWo1rWb'
 
@@ -116,8 +117,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
-#DATABASES['default'] =  dj_database_url.config()
+
+# DATABASES['default'] =  dj_database_url.config()
 DATABASES['default'] =  dj_database_url.config(default='postgres://shahvaiz:pass@localhost/geodata')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
@@ -127,14 +128,11 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
-import os
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = ''
 STATIC_ROOT = os.path.join('myapp', 'static')
 STATIC_URL = '/static/'
-
-
-
 
 STATICFILES_DIRS = (
 #    os.path.join(BASE_DIR, 'static'),

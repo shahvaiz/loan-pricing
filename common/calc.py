@@ -60,7 +60,7 @@ def ammortization (loan_amount, interest_rate, months):
 		payment_amount =  payment (loan_amount, interest_rate, months)
 		interest = balance * interest_rate/12
 		balance = balance + interest - payment_amount
-		counter = counter + 1;
+		counter = counter + 1
 
 		if (balance < 0):
 			balance = 0
