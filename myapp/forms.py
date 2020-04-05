@@ -1,17 +1,23 @@
 from django import forms
 from django.core.validators import RegexValidator
 
+
 class ContactForm(forms.Form):
-	#loan_type = forms.ChoiceField(choices=[('purchase', 'Purchase'), ('refi_rate_term','Refinance: Rate & Term'),  ('refi_cash_out','Refinance: Cash Out')], widget = forms.Select(attrs={'onchange':'yesNo();', 'id': 'loan_type_s'}))
-	loan_type = forms.ChoiceField(choices=[ ('refi_rate_term','Refi: Rate & Term'),  ('refi_cash_out','Refi: Cash Out'), ('purchase', 'Purchase'),], widget = forms.Select(attrs={'onchange':'yesNo();', 'class':'dropdown'}))
+	# loan_type = forms.ChoiceField(choices=[('purchase', 'Purchase'), ('refi_rate_term','Refinance: Rate & Term'),
+	# ('refi_cash_out','Refinance: Cash Out')], widget = forms.Select(attrs={'onchange':'yesNo();', 'id': 'loan_type_s'}))
+	loan_type = forms.ChoiceField(choices=[ ('refi_rate_term', 'Refi: Rate & Term'),
+											('refi_cash_out', 'Refi: Cash Out'),
+											('purchase', 'Purchase')], widget=forms.Select(attrs={'onchange':'yesNo();', 'class':'dropdown'}))
+
 	loan_balance = forms.FloatField(required = False, widget=forms.TextInput(attrs={'placeholder':'Current Loan Balance'}), initial=250000)
-	#loan_amount = forms.FloatField(widget=forms.TextInput(attrs={'placeholder':'Loan Amount'}))
+	# loan_amount = forms.FloatField(widget=forms.TextInput(attrs={'placeholder':'Loan Amount'}))
 	property_value = forms.FloatField(widget=forms.TextInput(attrs={'placeholder':'Property Value'}), initial=400000)
 	down_payment = forms.FloatField(widget=forms.TextInput(attrs={'placeholder':'Down Payment'}), initial=120000)
 	cash_out = forms.FloatField(widget=forms.TextInput(attrs={'placeholder':'Cash Out Amount'}), initial=20000)
-	#purchase_price = forms.FloatField(widget=forms.TextInput(attrs={'placeholder':'Purchase Price'}))
+	# purchase_price = forms.FloatField(widget=forms.TextInput(attrs={'placeholder':'Purchase Price'}))
 	zip_code = forms.CharField(max_length = 5, widget=forms.TextInput(attrs={'placeholder':'Zip Code'}), initial=20854)
-	#credit_score = forms.IntegerField(max_value = 900, min_value = 300, widget=forms.TextInput(attrs={'placeholder':'Credit Score'}))
+	# credit_score = forms.IntegerField(max_value = 900, min_value = 300,
+	# widget=forms.TextInput(attrs={'placeholder':'Credit Score'}))
 	property_type = forms.ChoiceField(choices=[('primary', 'Primary Residence'), ('second','Second Home'),  ('investment','Investment Property')], widget = forms.Select(attrs={'class':'dropdown'}))
 
 
@@ -116,8 +122,8 @@ class ApplicationForm(forms.Form):
 
 
 class InquiryForm(forms.Form):
-	first_name = forms.CharField() # do not validate names
-	last_name = forms.CharField() # do not validate names
+	first_name = forms.CharField()  # do not validate names
+	last_name = forms.CharField()  # do not validate names
 	email = forms.EmailField()
 	phone_number = forms.CharField(label='Phone Number', required=False, validators=[
             RegexValidator(

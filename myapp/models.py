@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class RegionInfo(models.Model):
 	zip = models.CharField(max_length = 5)
 	county = models.CharField(max_length = 60)
@@ -9,17 +10,19 @@ class RegionInfo(models.Model):
 	def __unicode__(self):
 		return self.zip + '/' + self.county
 
+
 class CountyFees(models.Model):
 	county = models.CharField(max_length = 60)
 	recording = models.DecimalField(max_digits = 4, decimal_places = 2)
 	taxes = models.DecimalField(max_digits = 4, decimal_places = 2)
 
+
 class Application(models.Model):
-	#title = models.CharField(max_length = 60)
+	# title = models.CharField(max_length = 60)
 	first_name = models.CharField(max_length = 20)
 	last_name = models.CharField(max_length = 20)
-	#middle_name = models.DecimalField(max_digits = 4, decimal_places = 2)
-	#suffix = models.DecimalField(max_digits = 4, decimal_places = 2)
+	# middle_name = models.DecimalField(max_digits = 4, decimal_places = 2)
+	# suffix = models.DecimalField(max_digits = 4, decimal_places = 2)
 	phone_mobile = models.CharField(max_length = 20, null=True, blank=True)
 	phone_home = models.CharField(max_length = 20, null=True, blank=True)
 	phone_work = models.CharField(max_length = 20, null=True, blank=True)
@@ -31,15 +34,13 @@ class Application(models.Model):
 	loan_balance = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 	loan_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 	property_value = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-	#purchase_price = forms.FloatField(widget=forms.TextInput(attrs={'placeholder':'Purchase Price'}))
+	# purchase_price = forms.FloatField(widget=forms.TextInput(attrs={'placeholder':'Purchase Price'}))
 	zip_code= models.CharField(max_length = 10, null=True, blank=True)
-	#cash_out = forms.FloatField()
+	# cash_out = forms.FloatField()
 	property_type = models.CharField(max_length = 30, null=True, blank=True)
-
 	program = models.CharField(max_length = 30, null=True, blank=True)
 	down_payment = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 	cash_out = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-	zip_code = models.CharField(max_length = 5, null=True, blank=True)
 	county = models.CharField(max_length = 30, null=True, blank=True)
 	state = models.CharField(max_length = 30, null=True, blank=True)
 	rate = models.DecimalField(max_digits=5, decimal_places=3, null=True, blank=True)
@@ -52,8 +53,8 @@ class Application(models.Model):
 	investor = models.CharField(max_length = 30, null=True, blank=True)
 	comment = models.TextField(null=True, blank=True)
 
+
 class Inquiry(models.Model):
-	#first_name = models.CharField(max_length = 20)
 	first_name = models.CharField(max_length = 40)
 	last_name = models.CharField(max_length = 20)
 	email = models.EmailField(null=True, blank=True)
