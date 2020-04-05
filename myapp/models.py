@@ -7,12 +7,12 @@ class RegionInfo(models.Model):
 	state_abbreviation = models.CharField(max_length = 2)
 	state = models.CharField(max_length = 30)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.zip + '/' + self.county
 
 
 class CountyFees(models.Model):
-	county = models.CharField(max_length = 60)
+	county = models.CharField(max_length=60)
 	recording = models.DecimalField(max_digits = 4, decimal_places = 2)
 	taxes = models.DecimalField(max_digits = 4, decimal_places = 2)
 
@@ -35,7 +35,7 @@ class Application(models.Model):
 	loan_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 	property_value = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 	# purchase_price = forms.FloatField(widget=forms.TextInput(attrs={'placeholder':'Purchase Price'}))
-	zip_code= models.CharField(max_length = 10, null=True, blank=True)
+	zip_code = models.CharField(max_length = 10, null=True, blank=True)
 	# cash_out = forms.FloatField()
 	property_type = models.CharField(max_length = 30, null=True, blank=True)
 	program = models.CharField(max_length = 30, null=True, blank=True)
