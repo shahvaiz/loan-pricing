@@ -1,7 +1,7 @@
 from investors.parkside_adjustments import *
 
 
-def investor_adjustment (investor, loan_amount, property_value, credit_score, loan_type, property_type, state, prog_id):
+def investor_adjustment(investor, loan_amount, property_value, credit_score, loan_type, property_type, state, prog_id):
 
 	if investor == "impac":
 		return calculate_adjustment_impac(loan_amount, property_value, credit_score, loan_type, property_type, state)
