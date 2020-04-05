@@ -1,24 +1,24 @@
 from myapp.models import CountyFees
-from myapp.models import RegionInfo
+
 
 class State:
-	abstract = 0 # 110 in md, dc, 85 in va
+	abstract = 0  # 110 in md, dc, 85 in va
 	courier = 65
-	deed = 0 # md, va = 80, dc = 290
+	deed = 0  # md, va = 80, dc = 290
 	payoff = 0
 	settlement = 295
 	title_examination = 95
 
-	title_rates =  [
-	[4.67, 3.97, 3.34, 2.65],
-	[2.78, 2.21, 1.94, 1.68],
-	[4.68, 4.44, 4.08, 2.7],
-	[2.9, 2.7, 2.3, 1.85],
-	[6.84, 6.12, 5.4, 4.5],
-	[5.4, 4.68, 3.96, 2.8]
+	title_rates = [
+		[4.67, 3.97, 3.34, 2.65],
+		[2.78, 2.21, 1.94, 1.68],
+		[4.68, 4.44, 4.08, 2.7],
+		[2.9, 2.7, 2.3, 1.85],
+		[6.84, 6.12, 5.4, 4.5],
+		[5.4, 4.68, 3.96, 2.8]
 	]
 
-	limits = [250000,500000,1000000]
+	limits = [250000, 500000, 1000000]
 
 	def title_insurance(self, property_value, type):
 		limits = State.limits
@@ -117,6 +117,7 @@ class VA (State):
 	def refinance (self, loan_amount):
 		total = [self.rec(loan_amount, self.trust_tax), self.title_insurance(loan_amount, 3), self.abstract, self.courier, self.payoff, self.settlement, self.title_examination]
 		return total
+
 
 class DC (State):
 	abstract = 110

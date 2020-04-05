@@ -28,7 +28,7 @@ urlpatterns = [
 	url(r'^esign$', esign,name='myapp.views.esign'),
 	url(r'^adjustableratemortgage$', adjustableratemortgage, name='myapp.views.adjustableratemortgage'),
 	url(r'^mortgageloanoptions$', mortgageloanoptions, name='myapp.views.mortgageloanoptions'),
-    url(r'^noincome$', noincome,name ='myapp.views.noincome'),
-    url(r'^$', fluid,name='myapp.views.fluid'),
-	url(r'^sitemap\.xml$', sitemap,name='myapp.views.sitemap'),
+    url(r'^noincome$', noincome, name ='myapp.views.noincome'),
+    url(r'^$', fluid, name='myapp.views.fluid'),
+	url(r'^sitemap\.xml$', sitemap, name='myapp.views.sitemap'),
 ]

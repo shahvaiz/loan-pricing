@@ -1,14 +1,3 @@
-"""
-Django settings for mysite project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
-"""
-
-
 import sys
 import os
 import dj_database_url
@@ -68,15 +57,15 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'sslify.middleware.SSLifyMiddleware',
+    # 'sslify.middleware.SSLifyMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    #'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'loan_pricing.urls'
 
 # WSGI_APPLICATION = 'myapp.wsgi.application'
 
@@ -110,27 +99,20 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
-
-STATIC_URL = '/static/'
-
 # Parse database configuration from $DATABASE_URL
 
 # DATABASES['default'] =  dj_database_url.config()
-DATABASES['default'] =  dj_database_url.config(default='postgres://shahvaiz:pass@localhost/geodata')
+DATABASES['default'] = dj_database_url.config(default='postgres://shahvaiz:pass@localhost/geodata')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['*']
+# Todo: create set up for base, local, and production.
+# ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = ''
 STATIC_ROOT = os.path.join('myapp', 'static')
 STATIC_URL = '/static/'
 
@@ -159,12 +141,12 @@ TEMPLATES = [
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
-#STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-#Storage on S3 settings are stored as os.environs to keep settings.py clean
+# Storage on S3 settings are stored as os.environs to keep settings.py clean
 
 if not DEBUG:
     AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']

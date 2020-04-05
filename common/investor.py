@@ -170,6 +170,7 @@ def calc_points(pts, loan_amount):
 			points = 1
 	return points
 
+
 def cc(isCC, total_title_costs):
 	if isCC == 0:
 		closing_costs_borrower = 0
@@ -177,4 +178,3 @@ def cc(isCC, total_title_costs):
 		closing_costs_borrower = total_title_costs
 	return closing_costs_borrower
 
-	
